@@ -4,6 +4,17 @@ var cw = (function() {
         $ww = $(window).width(),
         $zwwh = $(".zwtbtb").height();
         tools = {
+        	audioAutoPlay : function(id){
+		        var audio = document.getElementById(id),
+		            play = function(){
+		                audio.play();
+		                document.removeEventListener("touchstart",play,false);
+		            };
+		        //audio.play();
+		        document.addEventListener("WeixinJSBridgeReady",function(){
+		            play()
+		        },false);
+		    },
         	screen:function(){
         		if($ww/$wh < bili){
 					$(".pre-wrap").addClass("ms_abs");
@@ -442,6 +453,7 @@ var cw = (function() {
         					that.parents("li").find("i").html(tips);
 				        }
 				    })
+				    tools.audioAutoPlay("music_audio");
 				}
 			},
 			testdrive:{
@@ -486,6 +498,7 @@ var cw = (function() {
 					    	}
 					    }
 				    });
+				    tools.audioAutoPlay("music_audio");
 					/*$("#vehicletype").on("click",function(){
 						tools.selectP("vehicletype");
 					})
@@ -598,6 +611,7 @@ var cw = (function() {
 						}
 
 					});
+					tools.audioAutoPlay("music_audio");
 				}
 			}
 
